@@ -16,23 +16,15 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
-/*
- * ************************************************************************
- * 
- * @创建者 ZHY
- * 
- * @创建时间 2016-2-26 下午10:18:05
- * 
- * @描述 博客地址：http://blog.csdn.net/qq_20889581/article/details/50755449
- * 
- * @版权所有 文明的小流氓
- * 
- * ************************************************************************
- */
-public class LoginActivity extends Activity {
+
+public class LoginActivity extends BaseActivity {
 
 	@ViewInject(R.id.account)
 	private EditText account;
@@ -41,6 +33,7 @@ public class LoginActivity extends Activity {
 	private String accountStr;// 账号
 	private String passwordStr;// 密码
 	QQConnection conn;
+	private Spinner spinner;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +59,27 @@ public class LoginActivity extends Activity {
 
 			}
 		});
+		/**spinner= (Spinner) findViewById(R.id.theme_choose);
+		String[] mItems = getResources().getStringArray(R.array.themechoice);
+		ArrayAdapter<String> _Adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,mItems);
+		spinner.setAdapter(_Adapter);
+		spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 
+			@Override
+			public void onItemSelected(AdapterView<?> parent, View view,
+					int position, long id) {
+				// TODO Auto-generated method stub
+				
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> parent) {
+				// TODO Auto-generated method stub
+				
+			}
+		
+		});*/
+		
 	}
 
 	@Override

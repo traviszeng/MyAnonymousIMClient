@@ -26,26 +26,8 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
 
-/*
- * ************************************************************************
- * 
- * @创建者 ZHY
- * 
- * @创建时间 2016-2-26 下午10:17:42
- * 
- * @描述 博客地址：http://blog.csdn.net/qq_20889581/article/details/50755449
- * 
- * @版权所有 文明的小流氓
- * 
- * ************************************************************************
- */
-/**
- * 显示联系人
- * 
- * @author ZHY
- * 
- */
-public class MainActivity extends Activity {
+
+public class MainActivity extends BaseActivity {
 	/**
 	 * listView的使用分三步，获得listView容器，封装集合数据，写数据适配器加载listView条目的布局
 	 */

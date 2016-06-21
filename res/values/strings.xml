@@ -5,4 +5,22 @@
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
 
+    <string-array 
+        name="themechoice">
+        <item>请选择想要的主题</item>
+        <item>football_blue</item>
+        <item>football_red</item>
+        <item>smiley_yellow</item>
+        <item>smiley_pink</item>
+        <item>snowflake_blue</item>
+        <item >snowflake_green</item>
+        <item>trophy_blue</item>
+        <item>music_green</item>
+        <item>music_red</item> 
+        <item>key_blue</item>  
+        <item>key_red</item>
+        <item>flash_red</item>
+        <item>flash_blue</item> 
+        
+        </string-array>
 </resources>
