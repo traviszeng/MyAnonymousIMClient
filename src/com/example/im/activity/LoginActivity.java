@@ -56,7 +56,7 @@ public class LoginActivity extends Activity {
 
 			public void run() {
 				try {
-					conn = new QQConnection("114.213.17.47", 8090);// Socket
+					conn = new QQConnection("192.168.220.1", 8090);// Socket
 					conn.connect();// 建立连接
 					// 建立连接之后，将监听器添加到连接里面
 					conn.addOnMessageListener(listener);
@@ -97,7 +97,7 @@ public class LoginActivity extends Activity {
 		 * 用户登录的时候获取账号和密码，封装成Java对象，字段包括类型和内容，内容是用户名和密码之间的拼接
 		 */
 
-		// 封装好Java对象，讲数据写到服务器,在子线程中运行
+		// 封装好Java对象，将数据写到服务器,在子线程中运行
 		ThreadUtils.runInSubThread(new Runnable() {
 
 			public void run() {
