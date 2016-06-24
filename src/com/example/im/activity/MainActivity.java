@@ -50,15 +50,25 @@ public class MainActivity extends BaseActivity {
 
 				public void run() {
 
+					
+					//判断是否有与当前用户冲突的账号
+					
+					/*if((app.getMyAccount()==msg.newAddAccount)){
+						Intent intent=new Intent("com.example.im.FORCE_OFFLINE");
+						sendBroadcast(intent);
+					}*/
+					
 					// 如有服务器返回好友列表，则说明有好友上线\
 					if (QQMessageType.MSG_TYPE_BUDDY_LIST.equals(msg.type)) {
 						// 有好友上线
 						String newBuddyListJson = msg.content;// 新上线好友的信息json串
-						// 讲json转成集合，更新一下infos集合
+						// 将json转成集合，更新一下infos集合
 						Gson gson = new Gson();
 						ContactInfoList newList = gson.fromJson(
 								newBuddyListJson, ContactInfoList.class);// 新上线好友的集合
+						
 						infos.clear();// 清空一下原来的好友类表集合
+						
 						infos.addAll(newList.buddyList);// 新的好友列表
 						if (adapter != null) {
 							adapter.notifyDataSetChanged();

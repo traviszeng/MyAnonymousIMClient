@@ -7,6 +7,7 @@ import com.example.im.core.QQConnection;
 import com.example.im.core.QQConnection.OnMessageListener;
 import com.example.im.domain.QQMessage;
 import com.example.im.domain.QQMessageType;
+import com.example.im.util.MD5;
 import com.example.im.util.ThreadUtils;
 import com.lidroid.xutils.ViewUtils;
 import com.lidroid.xutils.view.annotation.ViewInject;
@@ -97,8 +98,13 @@ public class LoginActivity extends BaseActivity {
 	@OnClick(R.id.login)
 	public void login(View view) {
 		// Toast.makeText(getBaseContext(), "haha", 0).show();
+		MD5 md5 = new MD5();
 		accountStr = account.getText().toString().trim();
 		passwordStr = password.getText().toString().trim();
+		
+		//利用MD5加密密码
+		
+		passwordStr= md5.getMD5(passwordStr);
 		// 获得输入的账号和密码，发送
 		/*
 		 * 登录的协议 <QQMessage> <type>login</type> <sender>0</sender>
@@ -118,6 +124,7 @@ public class LoginActivity extends BaseActivity {
 					QQMessage msg = new QQMessage();
 					msg.type = QQMessageType.MSG_TYPE_LOGIN;
 					msg.content = accountStr + "#" + passwordStr;
+					msg.newAddAccount=Long.parseLong(accountStr);
 					conn.sendMessage(msg);
 				} catch (IOException e) {
 					e.printStackTrace();
@@ -155,6 +162,7 @@ public class LoginActivity extends BaseActivity {
 						 * <type>buddylist</type> <sendTime>02-26
 						 * 15:18:19</sendTime> <fromNick></fromNick>
 						 * <from>0</from> <to>0</to> <fromAvatar>1</fromAvatar>
+						 * <existAnother>false</existAnother>
 						 * </QQMessage>
 						 */
 						// 有用的信息是content的json串
@@ -176,7 +184,15 @@ public class LoginActivity extends BaseActivity {
 
 						finish();
 
-					} else {
+					}
+					/*else if(QQMessageType.MSG_TYPE_BUDDY_LIST.equals(msg.type)&&(msg.existAnother==true)){
+						//如果账号被别人登陆则强制下线
+						//发送强制下线广播
+						Intent intent = new Intent("com.example.im.FORCE_OFFLINE");
+						sendBroadcast(intent);
+						
+					} */
+					else {
 						Toast.makeText(getBaseContext(), "登录失败", 0).show();
 					}
 				}

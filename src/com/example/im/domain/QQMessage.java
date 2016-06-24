@@ -16,4 +16,6 @@ public class QQMessage extends ProtocalObj {
 	public long to = 0; // 接收者 account
 	public String content = ""; // 消息的内容 约不?
 	public String sendTime = MyTime.geTime(); // 发送时间
+	public boolean existAnother = false; //是否存在另一个使用同一账号登陆的人
+	public long newAddAccount=0L;   //新上线的用户的账号
 }

@@ -10,4 +10,5 @@ public class QQMessageType {
 	public static final String MSG_TYPE_SUCCESS = "success";//成功
 	public static final String MSG_TYPE_BUDDY_LIST = "buddylist";// 好友
 	public static final String MSG_TYPE_FAILURE = "failure";// 失败
+	public static final String MSG_TYPE_IDSTOLEN="identificationstolen";//有相同id的用户登录
 }
