@@ -1,0 +1,5 @@
+代码混淆器ProGuard：
+代码会把代码中所有程序执行时用不着的信息都删除掉，例如不使用的代码和调试信息，同时也会把你写的易于读写的带描述性的便于维护的代码识别出来，并把他们重新改成经过优化的难读的代码
+
+原理：release模式下build一个app，build系统将会检查proguard.config的值，并在吧app的字节码打包进apk之前，使用ProGuard对他进行混淆
+在proguard处理字节码的时候，assumeNoeffects属性会让它完全删除掉相关的代码行，

@@ -26,3 +26,12 @@
   public static int d(...);
   public static int e(...);
 }
+
+-dontwarn com.thoughtworks.xstream.converters.reflection.CGLIBEnhancedConverter$ReverseEngineeredCallbackFilter
+#-libraryjars libs/android-support-v4.jar
+#-libraryjars /gson-2.3.1.jar
+-libraryjars libs/xstream-1.4.7.jar
+#-libraryjars /xUtils.2.6.8.jar
+-keep class android.support.v4.** { *; }
+-keep class com.thoughtworks.xstream.** {*;}
+-dontwarn com.thoughtworks.xstream.**
