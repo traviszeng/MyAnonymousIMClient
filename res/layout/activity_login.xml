@@ -74,6 +74,8 @@
             android:gravity="center"
             android:text="登录"
             android:textSize="22sp" />
+        
+        
     </TableLayout>
 
     

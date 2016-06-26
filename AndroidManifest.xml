@@ -33,6 +33,9 @@
         </activity>
         <activity android:name="com.example.im.activity.ChartActivity" >
         </activity>
+        <activity android:name="com.example.im.activity.RandomCodeTEST">
+            
+        </activity>
         
         <receiver 
             android:name="com.example.im.broadcast.ForceOfflineBroadcastReceiver">

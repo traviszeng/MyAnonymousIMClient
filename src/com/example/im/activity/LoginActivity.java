@@ -3,10 +3,12 @@ package com.example.im.activity;
 import java.io.IOException;
 
 import com.example.im.R;
+import com.example.im.broadcast.ActivityCollector;
 import com.example.im.core.QQConnection;
 import com.example.im.core.QQConnection.OnMessageListener;
 import com.example.im.domain.QQMessage;
 import com.example.im.domain.QQMessageType;
+import com.example.im.security.RandomCode;
 import com.example.im.util.MD5;
 import com.example.im.util.ThreadUtils;
 import com.lidroid.xutils.ViewUtils;
@@ -14,13 +16,17 @@ import com.lidroid.xutils.view.annotation.ViewInject;
 import com.lidroid.xutils.view.annotation.event.OnClick;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -35,6 +41,7 @@ public class LoginActivity extends BaseActivity {
 	private String passwordStr;// 密码
 	QQConnection conn;
 	private Spinner spinner;
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +53,8 @@ public class LoginActivity extends BaseActivity {
 		 * 客户端再进行接收消息的操作
 		 */
 		// 与网络相关的操作要放在子线程中进行
+		
+		
 		ThreadUtils.runInSubThread(new Runnable() {
 
 			public void run() {
@@ -102,6 +111,10 @@ public class LoginActivity extends BaseActivity {
 		accountStr = account.getText().toString().trim();
 		passwordStr = password.getText().toString().trim();
 		
+		
+			
+		
+		
 		//利用MD5加密密码
 		
 		passwordStr= md5.getMD5(passwordStr);
@@ -121,6 +134,7 @@ public class LoginActivity extends BaseActivity {
 
 			public void run() {
 				try {
+					
 					QQMessage msg = new QQMessage();
 					msg.type = QQMessageType.MSG_TYPE_LOGIN;
 					msg.content = accountStr + "#" + passwordStr;
@@ -178,7 +192,7 @@ public class LoginActivity extends BaseActivity {
 						app.setMyAccount(Long.parseLong(accountStr));
 						// 打开主页
 						Intent intent = new Intent();
-						intent.setClass(getBaseContext(), MainActivity.class);
+						intent.setClass(getBaseContext(), RandomCodeTEST.class);
 						intent.putExtra("account", accountStr);
 						startActivity(intent);
 
