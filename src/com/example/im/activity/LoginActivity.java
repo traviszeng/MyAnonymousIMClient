@@ -19,15 +19,21 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -42,6 +48,83 @@ public class LoginActivity extends BaseActivity {
 	QQConnection conn;
 	private Spinner spinner;
 	
+	//主题资源
+	   
+    // 主题 ID 数组
+   private int [] drawableIDs = {
+            R.drawable.sport ,
+            R.drawable.movie,
+            R.drawable.cartoon ,
+            R.drawable.changjing,
+         
+   };
+
+       // 文字 ID 数组
+   private int [] nameIDs = {
+            R.string.cartoon ,
+            R.string.movie,
+            R.string.sport,
+           R.string.changjing,
+   };
+   
+   // 自定义一个 Adapter ，要重写 getCount 、 getItem 、 getItemId 和 getView 方法。其中的 getView 方法最为重要。
+   // 当然也可以先独立定义一个 Adapter 类
+private BaseAdapter customizedAdapter = new BaseAdapter()
+{
+            public int getCount()
+            {
+                     // TODO Auto-generated method stub
+                     return drawableIDs . length ;
+            }
+
+            public Object getItem( int position)
+            {
+                     // TODO Auto-generated method stub
+                     return drawableIDs [position];
+           }
+
+            public long getItemId( int position)
+           {
+                     // TODO Auto-generated method stub
+                     return position;
+            }
+
+            public View getView( int position, View convertView, ViewGroup parent)
+           {
+                     // TODO Auto-generated method stub
+                     // 先设定一个 LinearLayout 对象 ll
+                     LinearLayout ll = new LinearLayout(LoginActivity.this );
+                     // 使 ll 的 Orientation 为 HORIZONTAL
+                     ll.setOrientation(LinearLayout. HORIZONTAL );
+                     // 在垂直方向居中
+                     ll.setGravity(Gravity. CENTER_VERTICAL );
+           
+                     // 创建一个 ImageView 对象
+                     ImageView iv = new ImageView(LoginActivity.this );
+                     // 指定对应 position 的 Image
+                     iv.setImageResource( drawableIDs [position]);
+                     // 设定 ImageView 对象 iv 的宽度为 100 像素，高度为 40 像素
+                     iv.setLayoutParams( new ViewGroup.LayoutParams(100, 40));
+                     // 将 iv 加入到 ll
+                     ll.addView(iv);                    
+           
+                     // 创建一个 TextView 对象
+                     TextView tv = new TextView(LoginActivity.this );
+                     // 指定对应 position 的 Text
+                     tv.setText( nameIDs [position]);
+                     // 设定文字大小
+                     tv.setTextSize(14);
+                     // 设定文字颜色
+                     tv.setTextColor(Color. BLUE );
+                     // 将 tv 加入到 ll
+                     ll.addView(tv);
+           
+                     return ll;
+            }
+
+		 
+  };
+  
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -69,28 +152,13 @@ public class LoginActivity extends BaseActivity {
 
 			}
 		});
-		/**spinner= (Spinner) findViewById(R.id.theme_choose);
-		String[] mItems = getResources().getStringArray(R.array.themechoice);
-		ArrayAdapter<String> _Adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,mItems);
-		spinner.setAdapter(_Adapter);
-		spinner.setOnItemSelectedListener(new OnItemSelectedListener() {
-
-			@Override
-			public void onItemSelected(AdapterView<?> parent, View view,
-					int position, long id) {
-				// TODO Auto-generated method stub
-				
-			}
-
-			@Override
-			public void onNothingSelected(AdapterView<?> parent) {
-				// TODO Auto-generated method stub
-				
-			}
-		
-		});*/
-		
-	}
+	 
+	
+	  spinner = (Spinner) this .findViewById(R.id.spinner01 );
+      spinner .setAdapter( customizedAdapter );
+      spinner .setPrompt( " 请选择主题： " );
+     // spinner .setOnItemSelectedListener( this );
+}
 
 	@Override
 	protected void onDestroy() {
